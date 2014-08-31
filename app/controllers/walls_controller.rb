@@ -4,9 +4,17 @@ class WallsController < ApplicationController
   end
 
   def show
-    @wall = Wall.find_or_create_by(path: params[:path])
+    path = params[:path].downcase
+    @wall = Wall.find_or_create_by(path: path)
   end
 
   def update
+    @wall.update_attributes wall_attrs
   end
+
+  private
+
+    def wall_attrs
+      params.require(:wall).permit(:text)
+    end
 end
