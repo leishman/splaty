@@ -16,11 +16,11 @@ class WallsController < ApplicationController
       if wall.update_attributes wall_attrs
         flash[:notice] = 'Update Successful'
         format.html { redirect_to wall_path wall}
-        format.js { render json: { success: status }, status: 200 }
+        format.json { render json: { success: status, state: 'Saved' }, status: 200 }
       else
         flash[:notice] = 'Update Failed'
         format.html { redirect_to wall_path wall }
-        format.js { render json: { success: status }, status: 406 }
+        format.json { render json: { success: status }, status: 406 }
       end
     end
   end
