@@ -20,4 +20,6 @@ ActiveRecord::Schema.define(version: 20140831122330) do
     t.datetime "updated_at"
   end
 
+  add_index "walls", ["path"], name: "index_walls_on_path", unique: true, using: :btree
+
 end

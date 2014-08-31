@@ -6,5 +6,7 @@ class CreateWalls < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :walls, :path, unique: true
   end
 end

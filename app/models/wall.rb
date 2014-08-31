@@ -1,3 +1,3 @@
-class Wall < ActiveRecordBase
-  attr_accessible :text, :path
+class Wall < ActiveRecord::Base
+  validates :path, uniqueness: true
 end
