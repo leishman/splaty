@@ -11,7 +11,18 @@ class WallsController < ApplicationController
   end
 
   def update
-    @wall.update_attributes wall_attrs
+    wall = Wall.find(params[:id])
+    respond_to do |format|
+      if wall.update_attributes wall_attrs
+        flash[:notice] = 'Update Successful'
+        format.html { redirect_to wall_path wall}
+        format.js { render json: { success: status }, status: 200 }
+      else
+        flash[:notice] = 'Update Failed'
+        format.html { redirect_to wall_path wall }
+        format.js { render json: { success: status }, status: 406 }
+      end
+    end
   end
 
   private
