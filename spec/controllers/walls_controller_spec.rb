@@ -18,5 +18,10 @@ RSpec.describe WallsController, :type => :controller do
       expect(response.status).to eq 200
       expect(response).to render_template :show
     end
+
+    it "should redirect to the root path if the path name is invalid" do
+      get :show, path: 'inavlid^&'
+      expect(response).to redirect_to root_path
+    end
   end
 end
