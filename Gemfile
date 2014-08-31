@@ -41,6 +41,11 @@ gem 'spring',        group: :development
 # Use debugger
 gem 'byebug', group: [:development, :test]
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'

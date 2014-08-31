@@ -4,7 +4,7 @@ class WallsController < ApplicationController
   end
 
   def show
-    @wall = Wall.find_by(path: params[:path])
+    @wall = Wall.find_or_create_by(path: params[:path])
   end
 
   def update
