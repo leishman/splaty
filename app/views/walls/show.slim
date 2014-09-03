@@ -1,5 +1,6 @@
 h1 The Wall | #{@wall.path}
-div id='save_state'
+b id='save_state'
 = form_for @wall, url: wall_update_path(@wall.id), remote: true, method: :put, data: { type: :json }, html: { id: 'wall_form' } do |f|
   = f.text_area :text, value: @wall.text, placeholder: 'The magic box awaits your input', class: 'magic-box'
+  br
   = f.submit

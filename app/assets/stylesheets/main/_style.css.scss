@@ -1,3 +1,15 @@
+// Vars
+
+$mobile_breakpoint: 640px;
+
+$color_light_gray: #DDD;
+$color_medium_gray: #BBB;
+
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-size: 12px;
 }
@@ -11,6 +23,25 @@ body {
   width: 900px;
   height: 500px;
 }
+
+// general classes
+
+.muted {
+  color: $color_medium_gray;
+}
+
+input, textarea {
+  margin: 5px auto;
+  outline: none;
+  border-radius: 0;
+}
+
+textarea:focus {
+  outline: black solid 2px;
+}
+
+
+// Home page animation
 
 .propagating-circle {
   position: absolute;
@@ -80,5 +111,17 @@ body {
     width: 100px;
     top: 150px;
     left: 150px;
+  }
+}
+
+// media queries
+@media screen and (max-width: $mobile_breakpoint) {
+  .container {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .magic-box {
+    width: 100%;
   }
 }

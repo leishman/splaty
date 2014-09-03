@@ -30,6 +30,7 @@ saveAgent = (->
   bindSuccessfulSaveEvent = () ->
     wallForm.on 'ajax:success', (e, data, status, xhr) ->
       saveState.text(data.state)
+      saveState.addClass 'muted'
       return
     .on 'ajax:error', (e, data, status, xhr) ->
       saveState.text('Save Error')
@@ -39,7 +40,7 @@ saveAgent = (->
 
   bindInputEvent = ->
     magicBox.keyup ->
-      saveState.text('Not Saved')
+      saveState.text('Not Saved').removeClass('muted')
       window.clearTimeout(timeoutHandle)
       timeoutHandle = window.setTimeout saveMagicBox, timeoutLength * 1000
       return
