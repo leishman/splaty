@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'mysql2'
+gem 'puma'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -42,6 +43,13 @@ gem 'spring',        group: :development
 gem 'byebug', group: [:development, :test]
 
 group :development do
+  gem 'capistrano', '~> 3.2'
+  # cap tasks to manage puma application server
+  gem 'capistrano-puma', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-rvm',   '~> 0.1', require: false
+
   gem 'better_errors'
   gem 'binding_of_caller'
 end
