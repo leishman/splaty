@@ -15,7 +15,6 @@ copy_configs
 config/initializers/db_secret.rb
 config/application.yml
 config/database.yml
-config/secrets.yml
 config/redis.yml
 config/sidekiq.yml
 config/nginx.conf
