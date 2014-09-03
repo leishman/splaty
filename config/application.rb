@@ -22,10 +22,13 @@ module Splaty
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-
     config.assets.enabled = true
 
     config.assets.paths << Rails.root.join("lib", 'assets')
+
+    config.assets.compile = true
+    config.assets.precompile =  ['*.js.coffee', '*.css.scss']
+
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
