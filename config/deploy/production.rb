@@ -5,9 +5,9 @@
 # property set.  Don't declare `role :all`, it's a meta role.
 set :stage, :production
 
-role :app, %w{deploy@54.68.91.163}
-role :web, %w{deploy@54.68.91.163}
-role :db,  %w{deploy@54.68.91.163}
+role :app, %w{deploy@54.68.5.190}
+role :web, %w{deploy@54.68.5.190}
+role :db,  %w{deploy@54.68.5.190}
 
 
 # Extended Server Syntax
@@ -16,7 +16,7 @@ role :db,  %w{deploy@54.68.91.163}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server '54.68.91.163', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server 'deploy@54.68.5.190', user: 'deploy', roles: %w{web app db}, my_property: :my_value
 
 
 # Custom SSH Options
