@@ -12,10 +12,11 @@ class WallsController < ApplicationController
 
   def update
     wall = Wall.find(params[:id])
+
     respond_to do |format|
       if wall.update_attributes wall_attrs
         flash[:notice] = 'Update Successful'
-        format.html { redirect_to wall_path wall}
+        format.html { redirect_to wall_path wall }
         format.json { render json: { success: status, state: 'Saved' }, status: 200 }
       else
         flash[:notice] = 'Update Failed'
@@ -29,15 +30,16 @@ class WallsController < ApplicationController
     wall = Wall.find(params[:id])
     ce = CommandExecutor.new(params[:command])
     result = ce.run!
-
-    if result[:success]
-      flash[:notice] = 'Command Successful'
-      format.html { redirect_to wall_path wall}
-      format.json { render json: result, status: 200 }
-    else
-      flash[:notice] = 'Command Failed'
-      format.html { redirect_to wall_path wall }
-      format.json { render json: result, status: 406 }
+    respond_to do |format|
+      if result[:success]
+        flash[:notice] = 'Command Successful'
+        format.html { redirect_to wall_path wall }
+        format.json { render json: result, status: 200 }
+      else
+        flash[:notice] = 'Command Failed'
+        format.html { redirect_to wall_path wall }
+        format.json { render json: result, status: 406 }
+      end
     end
   end
 

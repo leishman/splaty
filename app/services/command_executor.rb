@@ -1,4 +1,4 @@
 class CommandExecutor
-	def initialize
+	def initialize(cmd_string)
 	end
 end
