@@ -25,6 +25,22 @@ class WallsController < ApplicationController
     end
   end
 
+  def command
+    wall = Wall.find(params[:id])
+    ce = CommandExecutor.new(params[:command])
+    result = ce.run!
+
+    if result[:success]
+      flash[:notice] = 'Command Successful'
+      format.html { redirect_to wall_path wall}
+      format.json { render json: result, status: 200 }
+    else
+      flash[:notice] = 'Command Failed'
+      format.html { redirect_to wall_path wall }
+      format.json { render json: result, status: 406 }
+    end
+  end
+
   private
 
     def wall_attrs

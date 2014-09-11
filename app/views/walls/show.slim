@@ -4,3 +4,8 @@ b id='save_state'
   = f.text_area :text, value: @wall.text, placeholder: 'The magic box awaits your input', class: 'magic-box'
   br
   = f.submit
+
+= form_tag url: command_path(@wall.id), remote: true, method: :post, data: { type: :json }, html: { id: 'command_box' } do 
+	= text_field_tag :command, nil, placeholder: 'Follow your heart', class: 'command-box'
+	br
+	=submit_tag 'Submit'
