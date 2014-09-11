@@ -52,7 +52,9 @@ RSpec.describe WallsController, :type => :controller do
         CommandExecutor.any_instance.stub(:run!).and_return({ success: false })
         post :command, { wall: { command: 'notacommand sldfaksf'}, id: @wall.id }, format: :json
         expect(response.status).to eq 406
-        p response.body
+
+        expected_response_body = { success: false }.to_json
+        expect(response.body).to eq expected_response_body
       end
     end
 
@@ -61,7 +63,9 @@ RSpec.describe WallsController, :type => :controller do
         CommandExecutor.any_instance.stub(:run!).and_return({success: true, message: 'Your email has been sent'})
         post :command, { wall: { command: 'email leishman@splaty.com'}, id: @wall.id }, format: :js
         expect(response.status).to eq 200
-        p response.body
+
+        expected_response_body = { success: true, message: 'Your email has been sent'}.to_json
+        expect(response.body).to eq(expected_response_body)
       end
     end
   end
