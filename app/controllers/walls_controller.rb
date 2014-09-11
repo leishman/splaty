@@ -6,10 +6,12 @@ class WallsController < ApplicationController
     # POTENTIAL FUTURE UPDATE
   end
 
+  # Show any wall with a valid path
   def show
     @wall = Wall.find_or_create_by(path: @path)
   end
 
+  # PUT to update a wall's contents
   def update
     wall = Wall.find(params[:id])
 
@@ -26,9 +28,12 @@ class WallsController < ApplicationController
     end
   end
 
+  # POST a command to be run by CommandExecutor
   def command
     wall = Wall.find(params[:id])
-    ce = CommandExecutor.new(params[:command])
+    cmd = params[:wall][:command]
+    ce = CommandExecutor.new(wall: wall, command: cmd)
+
     result = ce.run!
     respond_to do |format|
       if result[:success]
