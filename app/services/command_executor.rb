@@ -15,8 +15,8 @@ class CommandExecutor
     if command == 'email'
       SplatyMailer.wall_copy(@wall, args).deliver
     else
-      return
+      return { success: false, message: 'invalid command' }
     end
-    
+    return { success: true, message: "Email sent to #{args}"}
   end
 end

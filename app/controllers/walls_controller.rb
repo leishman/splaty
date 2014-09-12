@@ -35,6 +35,7 @@ class WallsController < ApplicationController
     ce = CommandExecutor.new(wall: wall, command: cmd)
 
     result = ce.run!
+
     respond_to do |format|
       if result[:success]
         flash[:notice] = 'Command Successful'
