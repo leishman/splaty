@@ -25,6 +25,13 @@ View.prototype.init = function(opts) {
 	this.fieldId = opts.fieldId;
 }
 
+View.prototype.createMessage = function(text) {
+	var messageContainer;
+	messageContainer = document.createElement('div');
+	messageContainer.innerHTML = '<p>' + text + '</p>';
+	messageContainer.class = 'command-message'
+	document.getElementsByTagName('body')[0].appendChild(messageContainer);
+}
 
 ////////////////
 // Controller: Responsible for binding events and holding logic
@@ -36,9 +43,19 @@ function Controller(opts) {
 Controller.prototype.init = function(opts) {
 	this.fieldId = opts.fieldId;
 	AtJsCaller.init(this.fieldId);
+	this.bindEvents();
 }
 
-
+Controller.prototype.bindEvents = function() {
+	var commandBox, _this, view;
+	commandBox = document.getElementById('command_box');
+	_this = this;
+	$(commandBox).on('ajax:success', function(e, data, status, xhr) {
+		this.reset();
+		view = new View({});
+		view.createMessage(data.message);
+	});
+}
 ///////////////
 // Model: Responsible for storing data
 
@@ -48,6 +65,7 @@ function Model(opts) {
 
 Model.prototype.init = function(opts) {
 	this.fieldId = opts.fieldId;
+	this.dataStore = {};
 };
 
 
@@ -66,7 +84,7 @@ AtJsCaller = (function(){
 	function createAtObject() {
 		$field.atwho({
     		at: "$$",
-    		data:['email', 'btc_send', 'publish']
+    		data:['email']
 		})
 	}
 
