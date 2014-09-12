@@ -35,7 +35,7 @@ RSpec.describe WallsController, :type => :controller do
     it 'should update the wall' do
       wall_2 = FactoryGirl.create(:wall, path: 'new_wall')
       wall_3 = FactoryGirl.create(:wall, path: 'new_wall_2')
-      put :update, { wall: { text: 'test test' }, id: wall_2.id }, format: :json
+      put :update, { wall: { text: 'test test' }, path: wall_2.path }, format: :json
       expect(response.status).to eq 200
       expect(wall_2.reload.text).to eq 'test test'
     end
@@ -50,7 +50,7 @@ RSpec.describe WallsController, :type => :controller do
     context 'command fails' do
       it "should return a failed response" do
         CommandExecutor.any_instance.stub(:run!).and_return({ success: false })
-        post :command, { wall: { command: 'notacommand sldfaksf'}, id: @wall.id }, format: :json
+        post :command, { wall: { command: 'notacommand sldfaksf'}, path: @wall.path }, format: :json
         expect(response.status).to eq 406
 
         expected_response_body = { success: false }.to_json
@@ -59,9 +59,9 @@ RSpec.describe WallsController, :type => :controller do
     end
 
     context 'command succeeds' do
-      it  "shold return a successful response" do
+      it  "should return a successful response" do
         CommandExecutor.any_instance.stub(:run!).and_return({success: true, message: 'Your email has been sent'})
-        post :command, { wall: { command: 'email leishman@splaty.com'}, id: @wall.id }, format: :js
+        post :command, { wall: { command: 'email leishman@splaty.com'}, path: @wall.path }, format: :js
         expect(response.status).to eq 200
 
         expected_response_body = { success: true, message: 'Your email has been sent'}.to_json

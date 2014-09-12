@@ -13,7 +13,7 @@ class WallsController < ApplicationController
 
   # PUT to update a wall's contents
   def update
-    wall = Wall.find(params[:id])
+    wall = Wall.find_by(path: params[:path])
 
     respond_to do |format|
       if wall.update_attributes wall_attrs
@@ -30,7 +30,7 @@ class WallsController < ApplicationController
 
   # POST a command to be run by CommandExecutor
   def command
-    wall = Wall.find(params[:id])
+    wall = Wall.find_by(path: params[:path])
     cmd = params[:wall][:command]
     ce = CommandExecutor.new(wall: wall, command: cmd)
 
