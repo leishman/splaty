@@ -1,4 +1,6 @@
 class CommandExecutor
+
+  COMMAND_REGEXP = /[$]{2}/
   def initialize(attrs)
     @wall = attrs[:wall]
     @command = attrs[:command]
@@ -6,6 +8,15 @@ class CommandExecutor
   end
 
   def run!
-    SplatyMailer.wall_copy(@wall, 'leishman3@gmail.com')
+    command_arr = @command.split(' ')
+    command = command_arr.shift.gsub(COMMAND_REGEXP, '')
+    args = command_arr
+
+    if command == 'email'
+      SplatyMailer.wall_copy(@wall, args).deliver
+    else
+      return
+    end
+    
   end
 end
