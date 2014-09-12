@@ -80,7 +80,7 @@ AtJsCaller = (function(){
 // Initialize
 
 $(function(){
-	var opts = { fieldId: 'wall_text'};
+	var opts = { fieldId: 'wall_command'};
 	var mgb = new MagicBox(opts);
 });
 
