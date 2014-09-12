@@ -10,9 +10,10 @@ describe CommandExecutor do
   context "Email Command" do
     it "should send an email to the given email address" do
       wall = FactoryGirl.build(:wall)
-      ce = CommandExecutor.new(wall: wall, command: 'email leishman@splaty.com')
+      ce = CommandExecutor.new(wall: wall, command: '$$email leishman@splaty.com')
       ce.run!
-      expect(last_email.to).to eq 'leishman@splaty.com'
+      expect(last_email.to).to include 'leishman@splaty.com'
     end
+
   end
 end
