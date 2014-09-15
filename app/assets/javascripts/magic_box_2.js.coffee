@@ -73,6 +73,7 @@ window.MagicBox = (->
       displayMessage resp
     catch err
       displayError err
+    dc.$commandField.val('')
     return
 
   # Function to filter out invalid arguments for command
@@ -124,7 +125,7 @@ window.MagicBox = (->
 
 MagicBox.commands.encrypt = (->
   encrypt = (key)->
-    if confirm "Are you sure you want to encrypt this with the key: #{key}? \n This will replace the text in the magic box"
+    if confirm "Are you sure you want to encrypt this with the key: '#{key}'? \n This will replace the text in the magic box"
       return encryptMessage(key)
     else
       return
