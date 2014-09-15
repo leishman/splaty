@@ -122,8 +122,6 @@ window.MagicBox = (->
   return publicFunctions
 )()
 
-
-
 MagicBox.commands.encrypt = (->
   encrypt = (key)->
     if confirm "Are you sure you want to encrypt this with the key: #{key}? \n This will replace the text in the magic box"
