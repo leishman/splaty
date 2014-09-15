@@ -6,6 +6,6 @@ b id='save_state'
   = f.submit
 
 = form_for @wall, url: command_path(@wall.path), remote: true, method: :post, data: { type: :json }, html: { id: 'command_box' } do  |f|
-	= f.text_field :command, value: nil, placeholder: 'Follow your heart', class: 'command-box'
+	= f.text_field :command, value: nil, placeholder: 'Follow your heart', class: 'command-box', autocomplete: 'off'
 	br
-	= f.submit 'Submit'
+	= submit_tag 'Submit'
