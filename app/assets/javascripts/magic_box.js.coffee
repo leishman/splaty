@@ -14,7 +14,6 @@ window.MagicBox = (->
   # object to hold local command functions
   localCommands = {}
   
-
   ###########
   # Private 
   ###########
@@ -28,7 +27,7 @@ window.MagicBox = (->
     dc.localCommands  = ['encrypt', 'decrypt']
     dc.serverCommands = ['email']
     dc.commandList = dc.localCommands.concat dc.serverCommands
-    dc.$commandForm = $('#command_box')
+    dc.$commandForm = $('#command_form')
     dc.$commandField = $('#wall_command')
     dc.$wallForm = $('#wall_form')
     dc.commandPrefix = '$$'
@@ -36,7 +35,7 @@ window.MagicBox = (->
 
   # Bind Command submission event
   bindCommandSubmission = ()->
-    $('#command_box').on 'ajax:beforeSend', (e, xhr)->
+    $('#command_form').on 'ajax:beforeSend', (e, xhr)->
       parseInputCommand(e, xhr)
       return
     return
@@ -53,6 +52,7 @@ window.MagicBox = (->
       runServerCommand(commandStr)
     else
       displayError("Invalid Command: #{commandStr}")
+    dc.$commandField.val('')
     return
 
   # UJS handles ajax submission for now
@@ -73,7 +73,6 @@ window.MagicBox = (->
       displayMessage resp
     catch err
       displayError err
-    dc.$commandField.val('')
     return
 
   # Function to filter out invalid arguments for command
@@ -104,8 +103,8 @@ window.MagicBox = (->
   displayMessage = (message, klass)->
     messageContainer = document.createElement('div')
     messageContainer.innerHTML = '<p>' + message + '</p>'
-    messageContainer.className = 'command-message' + ' ' + klass
-    document.getElementsByClassName('container')[0].appendChild(messageContainer)
+    messageContainer.className = 'command-message fade-in-left' + ' ' + klass
+    document.getElementById('messages').appendChild(messageContainer)
     return
 
   getCommand = (commandStr)->
