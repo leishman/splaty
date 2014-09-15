@@ -24,7 +24,7 @@ $magic_box_height: 300px;
 
 #wall_form:hover {
   .btn {
-    visibility: visible;
+    opacity: 1;
   }
 }
 
@@ -38,7 +38,14 @@ $magic_box_height: 300px;
   float: right;
   position: relative;
   right: 10px;
-  bottom: 50px;
+  bottom: 65px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+#command_form {
+  position: relative;
+  top: -20px;
 }
 
 .command-box {
@@ -66,7 +73,7 @@ $magic_box_height: 300px;
 }
 
 .invisible {
-  visibility: hidden;
+  opacity: 0;
 }
 
 .hide_desktop {
@@ -76,7 +83,7 @@ $magic_box_height: 300px;
 
 // Forms
 input, textarea {
-  margin: 5px auto;
+  margin: 10px auto;
   outline: none;
   border-radius: 0;
   border: 1px solid $color_medium_gray;
@@ -97,7 +104,7 @@ input {
   padding: 0 10px;
   border-radius: 2px;
   box-shadow: none;
-  border: none;
+  border: 1px solid $color_medium_gray;
   background-color: $color_lightest_gray;
 }
 
@@ -119,7 +126,7 @@ input {
 
 .command-message {
   background-color: $color_lightest_gray;
-  padding: 5px;
+  padding: 5px 15px;
   margin: 10px 0;
 }
 
@@ -138,5 +145,26 @@ input {
 
   #wall_form, .magic-box {
     width: 100%;
+  }
+
+  #command_form {
+    margin-top: 15px;
+    top: 0;
+  }
+
+  input, textarea {
+    width: 100% !important;
+  }
+
+  #messages {
+    width: 100%;
+  }
+
+  #wall_form .btn {
+    float: none;
+    display: block;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
   }
 }
