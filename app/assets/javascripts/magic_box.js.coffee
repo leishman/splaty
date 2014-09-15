@@ -101,10 +101,11 @@ window.MagicBox = (->
 
   # Function to display message. This should be extracted into separate presentation class
   displayMessage = (message, klass)->
-    messageContainer = document.createElement('div')
-    messageContainer.innerHTML = '<p>' + message + '</p>'
-    messageContainer.className = 'command-message fade-in-left' + ' ' + klass
-    document.getElementById('messages').appendChild(messageContainer)
+    messageElement = document.createElement('div')
+    messageElement.innerHTML = '<p>' + message + '</p>'
+    messageElement.className = 'command-message fade-in-left' + ' ' + klass
+    messagesContainer = document.getElementById('messages')
+    messagesContainer.insertBefore(messageElement, messagesContainer.firstChild)
     return
 
   getCommand = (commandStr)->
