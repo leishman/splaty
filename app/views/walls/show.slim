@@ -1,11 +1,12 @@
 h1 The Wall | #{@wall.path}
 b id='save_state'
-= form_for @wall, url: wall_update_path(@wall.path), remote: true, method: :put, data: { type: :json }, html: { id: 'wall_form' } do |f|
+= form_for @wall, url: wall_update_path(@wall.path), remote: true, method: :put, data: { type: :json }, html: { id: 'wall_form', class: 'center' } do |f|
   = f.text_area :text, value: @wall.text, placeholder: 'The magic box awaits your input', class: 'magic-box'
+  = submit_tag 'Save Wall', class: 'btn invisible'
   br
-  = f.submit
 
-= form_for @wall, url: command_path(@wall.path), remote: true, method: :post, data: { type: :json }, html: { id: 'command_box' } do  |f|
-	= f.text_field :command, value: nil, placeholder: 'Follow your heart', class: 'command-box', autocomplete: 'off'
-	br
-	= submit_tag 'Submit'
+= form_for @wall, url: command_path(@wall.path), remote: true, method: :post, data: { type: :json }, html: { id: 'command_form' } do  |f|
+	= f.text_field :command, value: nil, placeholder: 'Follow your heart', class: 'command-box clearfix', autocomplete: 'off'
+	= submit_tag 'Submit Command', class: 'btn center'
+
+div id="messages" class="center"
