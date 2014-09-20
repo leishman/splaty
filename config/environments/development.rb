@@ -30,6 +30,15 @@ Rails.application.configure do
     :password  => ENV["MANDRILL_API_KEY"]
   }
 
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_host_name => 'splaty-files.s3-website-us-west-1.amazonaws.com',
+    :s3_credentials => {
+      :bucket => 'splaty-files'
+    }
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
