@@ -1,3 +1,4 @@
+// TODO, clean up CSS
 
 * {
   box-sizing: border-box;
@@ -16,7 +17,6 @@ $magic_box_height: 300px;
   width: $container_width;
   margin: 0 auto;
 }
-
 
 #wall_form {
   width: 100%;
@@ -111,7 +111,6 @@ input {
 .btn:hover {
   background-color: $color_light_gray;
 }
-
 
 // messages
 
